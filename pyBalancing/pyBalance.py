@@ -415,6 +415,8 @@ class PyBalance(QWidget):
             self.ui.TextPercent.setText('{:.2f}'.format(self.excited_percent))
         elif(ctrlIndex==11 and abs(self.RPM-value)>err):
             self.RPM=value
+            self.updatePlotLineWise()
+            self.fig.canvas.draw()    
             self.unit_kgf=0.001*self.radius*(self.RPM/60*2*numpy.pi)**2/1000/9.8
             self.all_kgf=self.unit_kgf*self.weight
             self.excited_percent=100.0*self.all_kgf/self.shaftmass
